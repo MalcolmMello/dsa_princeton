@@ -2,28 +2,28 @@ package union_find;
 
 public class QuickUnionImprovementsUF {
 	private int[] id;
-	private int[] sz;
+	private int[] size;
 	
 	public QuickUnionImprovementsUF(int N)
 	{
 		id = new int[N];
-		sz = new int[N];
+		size = new int[N];
 		
 		for(int i = 0; i < N; i++)
 		{
 			id[i] = i;
-			sz[i] = 1;
+			size[i] = 1;
 		}
 	}
 	
-	private int root(int i)
+	private int root(int element)
 	{
-		while(i != id[i])
+		while(element != id[element])
 		{
-			id[i] = id[id[i]];
-			i = id[i];
+			id[element] = id[id[element]];
+			element = id[element];
 		};
-		return i;
+		return element;
 	}
 	
 	public boolean connected(int p, int q)
@@ -37,7 +37,7 @@ public class QuickUnionImprovementsUF {
 		int j = root(q);
 		if(i == j) return;
 		
-		if(sz[i] < sz[j]) { id[i] = j; sz[j] += sz[i]; }
-		else			  { id[j] = i; sz[i] += sz[j]; }
+		if(size[i] < size[j]) { id[i] = j; size[j] += size[i]; }
+		else			  { id[j] = i; size[i] += size[j]; }
 	}
 }
